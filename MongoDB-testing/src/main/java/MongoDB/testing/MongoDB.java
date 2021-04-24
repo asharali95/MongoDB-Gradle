@@ -25,8 +25,9 @@ public class MongoDB {
 		 
 //		 test.insert(convert(testObj));
 		 
-		 DBObject query = new BasicDBObject("XP",1234); // means that we want specific obj of data whose XP is 1234
-		 DBCursor cursor= test.find(query); // we need a cursor to take that database and find query. if there is more than one satisfying the query it will return
+//		 DBObject query = new BasicDBObject("XP",1234); // means that we want specific obj of data whose XP is 1234
+		 
+//		 DBCursor cursor= test.find(query); // we need a cursor to take that database and find query. if there is more than one satisfying the query it will return
 		 // if we want just first one then we use cursor.one()
 		 
 //		 while(cursor.hasNext()) {
@@ -34,19 +35,30 @@ public class MongoDB {
 //			 System.out.println(next);
 //		 }
 		 
-		 TestObj newMod = new TestObj();
-		 newMod.setXp(5678);
-		 newMod.setMemberID("Ashar");
-		 newMod.setTimer(1);
-		 
+//		 TestObj newMod = new TestObj();
+//		 newMod.setXp(9101);
+//		 newMod.setMemberID("Zeeshan");
+//		 newMod.setTimer(3);
+//		 test.insert(convert(newMod));
+		 DBObject query = new BasicDBObject("XP",1234);
+		 DBCursor cursor= test.find(query);
 //		 test.findAndModify(query,convert(newMod)); // for modification in test collection
-		 cursor = test.find(query);
+//		 cursor = test.find(query);
 		 
-		 while(cursor.hasNext()) {
-			 DBObject next = cursor.next();
-			 System.out.println(next);
-		 }
+//		 while(cursor.hasNext()) {
+//			 DBObject next = cursor.next();
+//			 System.out.println(next);
+//		 }
+		 
+		 //remove query
+		 test.findAndRemove(query);
+		 System.out.println(cursor.count());
+		 
 	}
+		 
+		
+		 
+		 
 	public static DBObject convert(TestObj testObj) {
 		return new BasicDBObject("XP",testObj.getXp()).append("Timer",testObj.getTimer()).append("Member ID", testObj.getMemberID());
 		
